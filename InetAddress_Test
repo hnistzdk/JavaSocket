@@ -1,0 +1,36 @@
+package JavaWeb;
+
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
+/**
+ * @Description
+ * @Author zdk
+ * @Date 2020/10/28 18:49
+ *
+ * InetAddress类没有构造方法,无法使用new来创建对象,通常使用其提供的静态方法来获取
+ */
+public class InetAddress_Test {
+    InetAddress myIPAddress=null;
+    InetAddress myServer=null;
+    public static void main(String[] args)
+    {
+        InetAddress_Test search=new InetAddress_Test();
+        System.out.println("您主机的IP地址为："+search.getMyIPAddress());
+        System.out.println("服务器的IP地址为："+search.getMyServer());
+    }
+    public InetAddress getMyIPAddress()
+    {
+        try {
+            myIPAddress=InetAddress.getLocalHost();
+        }catch (UnknownHostException e){}
+        return myIPAddress;
+    }
+    public InetAddress getMyServer()
+    {
+        try {
+            myServer=InetAddress.getByName("www.baidu.com");
+        }catch (UnknownHostException e){}
+        return myServer;
+    }
+}
