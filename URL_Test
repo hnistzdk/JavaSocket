@@ -1,0 +1,38 @@
+package JavaWeb;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
+
+/**
+ * @Description
+ * @Author zdk
+ * @Date 2020/10/28 18:32
+ *
+ * 利用URL获取网络上文件的内容
+ */
+public class URL_Test {
+    public static void main(String[] args)
+    {
+        String urlName="http://www.edu.cn/index.html";
+        if(args.length>0) args[0]=urlName;
+        new URL_Test().display(urlName);
+    }
+    public void display(String urlName){
+        try {
+            URL url=new URL(urlName);
+            InputStreamReader in=new InputStreamReader(url.openStream());
+            BufferedReader buf=new BufferedReader(in);
+            String aLine;
+            while((aLine=buf.readLine())!=null)//从流中读取一行显示
+                System.out.println(aLine);
+        }catch (MalformedURLException malformedURLException){
+            System.out.println(malformedURLException);
+        }
+        catch (IOException ioException){
+            System.out.println(ioException);
+        }
+    }
+}
